@@ -1,32 +1,36 @@
-# Sanitar — загрузки
+# Sanitar
 
-Находит и удаляет малварь, закрепившуюся в Windows: майнеры, RDP-бэкдоры, блокировщики антивирусов. Ищет не вирусы по базе, а то, чем малварь закрепляется и защищается: задачи планировщика, автозапуск, службы, подделки системных файлов, отключённый Защитник, блокировки AppLocker и IFEO, hosts, RDP Wrapper.
+**Finds and removes malware that has dug into Windows — hidden miners, RDP backdoors, antivirus blockers.**
 
-Один exe для Windows 10/11 x64, ничего ставить не нужно.
+[Русская версия](README.ru.md)
 
-## Скачать
+Sanitar does not hunt for viruses by signature. It looks for the ways malware keeps itself alive and protected: scheduled tasks, autostart entries, services, fake system files, a disabled Microsoft Defender, AppLocker and IFEO blocks, the hosts file and RDP Wrapper.
 
-**[Sanitar.exe — последняя версия](https://github.com/Traible/Sanitar-releases/releases/latest/download/Sanitar.exe)**
+One portable `.exe` for Windows 10/11 x64 — nothing to install.
 
-Эта ссылка всегда ведёт на свежую версию — её можно сохранить в закладки или отправить коллегам. Список изменений и SHA-256 каждой версии — на странице [релизов](https://github.com/Traible/Sanitar-releases/releases).
+## Download
 
-## Как пользоваться
+**[Sanitar.exe — latest version](https://github.com/Traible/Sanitar-releases/releases/latest/download/Sanitar.exe)**
 
-1. Скачайте `Sanitar.exe`. Лучше на флешку: заражённый компьютер может не открывать сайты.
-2. Запустите и согласитесь на права администратора.
-3. Выберите **«Проверить и вылечить»**. Перед любыми изменениями Sanitar покажет, что нашёл.
-4. Не помогло — **«Собрать лог для анализа»** и отправьте zip тому, кто разбирает логи. Имена пользователей и компьютера в логе скрываются.
+This link always points to the newest build, so you can bookmark it or send it to colleagues. The changelog and SHA-256 of every version are on the [releases page](https://github.com/Traible/Sanitar-releases/releases).
 
-Всё удалённое уходит в карантин (`C:\Sanitar`), каждое изменение пишется в журнал, чистку можно отменить из меню. Перед лечением создаётся точка восстановления.
+## How to use
 
-## Проверка файла
+1. Download `Sanitar.exe`, ideally to a USB stick: an infected PC may refuse to open websites.
+2. Run it and accept the administrator prompt.
+3. Choose **Scan and clean** (`Проверить и вылечить`). Sanitar shows what it found before it changes anything.
+4. Didn't help? Choose **Collect log for analysis** (`Собрать лог для анализа`) and send the zip to whoever reviews the logs. User and computer names are masked in the log.
+
+Everything removed goes to quarantine (`C:\Sanitar`), every change is written to a journal, and a cleanup can be undone from the menu. A system restore point is created before cleaning.
+
+## Verify the file
 
 ```powershell
 (Get-FileHash .\Sanitar.exe -Algorithm SHA256).Hash
 ```
 
-Сравните с хэшем в описании релиза или в файле `Sanitar.exe.sha256`.
+Compare it with the hash in the release notes or in `Sanitar.exe.sha256`.
 
-Файл не подписан цифровой подписью, поэтому SmartScreen может предупредить о неизвестном издателе: «Подробнее» → «Выполнить в любом случае».
+The file is not code-signed, so SmartScreen may warn about an unknown publisher: **More info** → **Run anyway**.
 
-Sanitar не заменяет обычный антивирус. Исходный код закрыт; здесь публикуются только готовые сборки.
+Sanitar does not replace a regular antivirus. The source code is closed; this repository only publishes ready-made builds.
